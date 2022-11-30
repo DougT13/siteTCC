@@ -21,7 +21,7 @@ DROP DATABASE IF EXISTS Cantina;
 	CREATE TABLE Clientes(
 		IDCliente INT auto_increment NOT NULL PRIMARY KEY,
 		Nome VARCHAR(100) NOT NULL,
-		Telefone BIGINT(14) NOT NULL,
+		Telefone BIGINT(14) NOT NULL UNIQUE KEY,
 		Email VARCHAR(100) NOT NULL UNIQUE KEY,
         Senha VARCHAR(100) NOT NULL
 );
@@ -69,9 +69,9 @@ DROP DATABASE IF EXISTS Cantina;
 	);
 
 	INSERT INTO Clientes
-	VALUES(null, 'Jailson Mendes', '(11)99632-0258', 'jailson@mendes.com', '123pato'),
+	VALUES(null, 'Jailson Mendes', '(12)99632-0258', 'jailson@mendes.com', '123pato');
 	(null, 'Manel Solucoes', '(11)96969-6969', 'manel@solucao.com', '123manel'),
-	(null, 'Dogla Gay Hetero', '(11)91313-2222', 'dogla@serelepe.com', '123dogla');
+	VALUES(null, 'Dogla Gay Hetero', '(11)91313-2222', 'dogla@serelepe.com', '123dogla');
 	
 	INSERT INTO Pedidos
 	VALUES(null, '1', '2005-05-01', '80'),

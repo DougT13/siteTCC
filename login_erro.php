@@ -76,7 +76,7 @@
 		 left: 0;
 		 bottom: 0;
 		 width: 100%;
-		 background-color: black;
+		 background-color: rgb(40,40,40);
 		 color: white;
 		 text-align: center;
 		}
