@@ -21,7 +21,7 @@ DROP DATABASE IF EXISTS Cantina;
 	CREATE TABLE Clientes(
 		IDCliente INT auto_increment NOT NULL PRIMARY KEY,
 		Nome VARCHAR(100) NOT NULL,
-		Telefone BIGINT(14) NOT NULL UNIQUE KEY,
+		Telefone BIGINT(14) NOT NULL,
 		Email VARCHAR(100) NOT NULL UNIQUE KEY,
         Senha VARCHAR(100) NOT NULL
 );
@@ -41,11 +41,22 @@ DROP DATABASE IF EXISTS Cantina;
 	
 
 	INSERT INTO Produtos
-	VALUES(null, 1, 'Coxinha', '5.00', '45', 'Coxinha de Frango'),
-	(null, 1, 'Hamburgão', '5.50', '41', 'Hamburguer com cheedar'),
-	(null, 1, 'Beirute', '7.00', '20', 'Fatia unica de beirute de frango'),
-	(null, 1, 'Pizza', '9.00', '10', 'Fatia unica de pizza de calabresa'),
-	(null, 1, 'Bolo', '5.00', '85', 'fatia unica de bolo de chocolate');
+	VALUES(null, 1, 'Fatia de Bolo', '4.00', '45', 'Bolo de chocolate com morango'),
+	(null, 1, 'Brigadeiro', '2.00', '41', 'chocolate com granulados'),
+	(null, 1, 'Mousse', '10.00', '20', 'Mousse de chocolate'),
+
+	(null, 1, 'Suco Natural', '5.00', '10', 'Vários sabores'),
+	(null, 1, 'Refrigerante', '5.00', '85', 'Vários sabores'),
+	(null, 1, 'Água', '2.00', '85', 'Sem gás'),
+
+	(null, 1, 'Coxinha', '6.00', '45', 'Frango com Catupiry'),
+	(null, 1, 'Pão de Queijo', '2.50', '41', 'Quente e crocante'),
+	(null, 1, 'Misto Quente', '6.00', '20', 'Com queijo e presunto'),
+
+	(null, 1, 'Combo Batata Frita e Bacon', '10.00', '10', 'Cheedar Opcional'),
+	(null, 1, 'Combo Coca e Burguer', '10.00', '10', 'Hamburguer simples'),
+	(null, 1, 'Combo Café e Pão de Queijo', '5.00', '85', 'Acompanha 10 pães de queijo'),
+	(null, 1, 'Salada', '6.00', '85', 'Tomate, cebola e alface');
 
 
 	CREATE TABLE Pedidos(
@@ -53,6 +64,7 @@ DROP DATABASE IF EXISTS Cantina;
 		IDCliente INT NOT NULL,
 		DataPedido DATE NOT NULL,
 		ValorPedido DECIMAL(5,2) NOT NULL,
+		Confirmado INT NOT NULL,
 
 		CONSTRAINT FK_Clientes_IDCliente FOREIGN KEY (IDCliente) REFERENCES Clientes(IDCliente)
 		
@@ -69,17 +81,17 @@ DROP DATABASE IF EXISTS Cantina;
 	);
 
 	INSERT INTO Clientes
-	VALUES(null, 'Jailson Mendes', '(12)99632-0258', 'jailson@mendes.com', '123pato');
+	VALUES(null, 'Jailson Mendes', '(12)99632-0258', 'jailson@mendes.com', '123pato'),
 	(null, 'Manel Solucoes', '(11)96969-6969', 'manel@solucao.com', '123manel'),
-	VALUES(null, 'Dogla Gay Hetero', '(11)91313-2222', 'dogla@serelepe.com', '123dogla');
+	(null, 'Dogla Gay Hetero', '(11)91313-2222', 'dogla@serelepe.com', '123dogla');
 	
 	INSERT INTO Pedidos
-	VALUES(null, '1', '2005-05-01', '80'),
-	(null, '1', '2004-05-08', '10'),
+	VALUES(null, '1', '2005-05-01', '80', '0'),
+	(null, '1', '2004-05-08', '10', '0'),
 
-	(null, '2', '2022-10-11', '50'),
+	(null, '2', '2022-10-11', '50', '0'),
 
-	(null, '3', '2022-10-15', '40');
+	(null, '3', '2022-10-15', '40', '0');
 
 
 	INSERT INTO ItensPedidos
