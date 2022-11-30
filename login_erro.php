@@ -71,7 +71,15 @@
         .submit:hover{
             background-color: #ffb515;
         }
-
+        footer{
+		 position: fixed;
+		 left: 0;
+		 bottom: 0;
+		 width: 100%;
+		 background-color: black;
+		 color: white;
+		 text-align: center;
+		}
 	</style>
 </head>
 <body>
@@ -97,5 +105,8 @@
         </form>
         <p style="text-align: center; position: below; color: red;">Usuário ou senha incorretos!</p>
 	</div>
+<footer>
+	Projeto Open Source.	&trade; - Copyright&copy; - : Agradecimentos especiais ETEC IRMÃ AGOSTINA
+</footer>
 </body>
 </html>

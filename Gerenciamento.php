@@ -43,6 +43,15 @@
 			background: linear-gradient(to right, rgba(225, 147, 220, 0.8), rgb(218, 165, 32));
 			text-align: center;
 		}
+		footer{
+		 position: fixed;
+		 left: 0;
+		 bottom: 0;
+		 width: 100%;
+		 background-color: black;
+		 color: white;
+		 text-align: center;
+		}
 	</style>
 </head>
 <body>
@@ -122,4 +131,7 @@
 
 </script>
 </div>
+<footer>
+		Projeto Open Source.	&trade; - Copyright&copy; - : Agradecimentos especiais ETEC IRMÃ AGOSTINA
+</footer>
 </html>

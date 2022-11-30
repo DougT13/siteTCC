@@ -55,7 +55,15 @@
 			text-align: center;
 			
 		}
-		
+		footer{
+		 position: fixed;
+		 left: 0;
+		 bottom: 0;
+		 width: 100%;
+		 background-color: black;
+		 color: white;
+		 text-align: center;
+		}
 	</style>
 </head>
 <body>
@@ -75,32 +83,39 @@
 		<a class="btn btn-sm btn-primary" href="login.php" style="background: #fe7009; border: 1px solid black; color: black; margin-left: auto; margin-bottom:20px; padding:10px 10px 10px 10px;" ><b>Sair</b></a>
 	</div>
 	<div>
-	<table style="border-top: 3px solid black;
-			width: 50%;
-			text-align: center;
-			border-right: 3px solid black;
-			border-left: 3px solid black;
-			background-color: rgba(255, 255, 255, 0.8);">
-	<thead >
-		<th>IDPedido: 8// Data Pedido: 10-02-2005 // Valor Pedido: $80,00</th>
-	</thead>
-	</table>
-	<table class='table text-black table-bg'>
-						<thead>
-							<tr>
-								<th scope='col'>IDPedido</th>
-								<th scope='col'>Data do Pedido</th>
-								<th scope='col'>Valor Pedido</th>
-								<th scope='col'>Cliente</th>	
-								<th scope='col'>Produto</th>	
-								<th scope='col'>Preço</th>	
-								<th scope='col'>Quantidade Vendida</th>	
-								</th>
-							</tr>
-						</thead>
-						<tbody>
+
+	
 		<?php
 			$IDPedido = "";
+
+			echo "
+				<table style='border-top: 3px solid black;
+				width: 100%;
+				text-align: center;
+				border-right: 3px solid black;
+				border-left: 3px solid black;
+				background-color: rgba(255, 255, 255, 0.8);'>
+				<thead >
+					<th>IDPedido: 8// Data Pedido: 10-02-2005 // Valor Pedido: $80,00</th>
+				</thead>
+				</table>
+				<table class='table text-black table-bg'>
+				<thead>
+					<tr>
+						<th scope='col'>IDPedido</th>
+						<th scope='col'>Data do Pedido</th>
+						<th scope='col'>Valor Pedido</th>
+						<th scope='col'>Cliente</th>	
+						<th scope='col'>Produto</th>	
+						<th scope='col'>Preço</th>	
+						<th scope='col'>Quantidade Vendida</th>	
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+			
+			";
+
 			foreach($response['pedidos'] as $pedido){
 				
 				if($pedido['IDPedido'] == $id)
@@ -159,6 +174,9 @@
 		  </tbody>
 		</table>
 	</div>
+	<footer>
+		Projeto Open Source.	&trade; - Copyright&copy; - : Agradecimentos especiais ETEC IRMÃ AGOSTINA
+	</footer>
 </body>
 <script>
 	var search = document.getElementById('pesquisar');
