@@ -94,6 +94,12 @@ DROP DATABASE IF EXISTS Cantina;
 	('2', '3', '3'),
 	('2', '4', '2');
 
+	INSERT INTO ItensPedidos
+	VALUES('4', '1', '5'),
+	('4', '2', '7'),
+	('4', '3', '8'),
+	('4', '4', '9');
+
 	SELECT Pedidos.IDPedido,
 	Pedidos.DataPedido,
 	Pedidos.ValorPedido,

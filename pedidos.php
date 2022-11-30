@@ -75,7 +75,7 @@
         </div>
     </nav>  
     <br>
-    <div class="container-md">
+    <div class="container">
 	<div class="box-search">
 		
 		<a class="btn btn-sm btn-primary" href="Gerenciamento.php" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px;" ><b>Ir para o gerenciamento</b></a>
@@ -88,6 +88,7 @@
 		<?php
 			$IDPedido = "";
 
+			foreach($response['pedidos'] as $pedido){
 			echo "
 				<table style='border-top: 3px solid black;
 				width: 100%;
@@ -95,17 +96,13 @@
 				border-right: 3px solid black;
 				border-left: 3px solid black;
 				background-color: rgba(255, 255, 255, 0.8);'>
-				<thead >
-					<th>IDPedido: 8// Data Pedido: 10-02-2005 // Valor Pedido: $80,00</th>
+				<thead >";
+				echo "<th>IDPedido: ".($pedido['IDPedido'])." // Cliente: ".($pedido['Nome'])."// Data Pedido: ".($pedido['DataPedido'])." // Valor Pedido: ".($pedido['ValorPedido'])."</th>
 				</thead>
 				</table>
 				<table class='table text-black table-bg'>
 				<thead>
 					<tr>
-						<th scope='col'>IDPedido</th>
-						<th scope='col'>Data do Pedido</th>
-						<th scope='col'>Valor Pedido</th>
-						<th scope='col'>Cliente</th>	
 						<th scope='col'>Produto</th>	
 						<th scope='col'>Preço</th>	
 						<th scope='col'>Quantidade Vendida</th>	
@@ -113,57 +110,52 @@
 					</tr>
 				</thead>
 				<tbody>
-			
 			";
-
+			break;
+			}
 			foreach($response['pedidos'] as $pedido){
 				
 				if($pedido['IDPedido'] == $id)
 				{	
 					if($pedido['IDPedido'] != $IDPedido){
 						echo "<tr>";
-						echo"<td>".($pedido['IDPedido'])."</td>";
-						echo"<td>".($pedido['DataPedido'])."</td>";
-						echo"<td>".($pedido['ValorPedido'])."</td>";
-						echo"<td>".($pedido['Nome'])."</td>";
+						
 						echo"<td>".($pedido['NomeProduto'])."</td>";
 						echo"<td>".($pedido['PrecoProduto'])."</td>";
 						echo"<td>".($pedido['QuantidadeVendida'])."</td>";
 						$IDPedido = $pedido['IDPedido'];
 					}else {
 						echo "<tr>";
-						echo"<td>".'-'."</td>";
-						echo"<td>".'-'."</td>";
-						echo"<td>".'-'."</td>";
-						echo"<td>".'-'."</td>";
 						echo"<td>".($pedido['NomeProduto'])."</td>";
 						echo"<td>".($pedido['PrecoProduto'])."</td>";
 						echo"<td>".($pedido['QuantidadeVendida'])."</td>";
 					}
 					
 				}else{
-					$id++;
+					$id = $pedido['IDPedido'];
 					echo "
-					<table class='table text-black table-bg'>
+						<table style='border-top: 3px solid black;
+						width: 100%;
+						text-align: center;
+						border-right: 3px solid black;
+						border-left: 3px solid black;
+						background-color: rgba(255, 255, 255, 0.8);'>
+						<thead >";
+							echo "<th>IDPedido: ".($pedido['IDPedido'])." // Cliente: ".($pedido['Nome'])."// Data Pedido: ".($pedido['DataPedido'])." // Valor Pedido: ".($pedido['ValorPedido'])."</th>
+						</thead>
+						</table>
+						<table class='table text-black table-bg'>
 						<thead>
-						<tr>
-						<th scope='col'>IDPedido</th>
-						<th scope='col'>Data do Pedido</th>
-						<th scope='col'>Valor Pedido</th>
-						<th scope='col'>Cliente</th>	
-						<th scope='col'>Produto</th>	
-						<th scope='col'>Preço</th>	
-						<th scope='col'>Quantidade Vendida</th>	
-						</th>
-						</tr>
-					</thead>
-					<tbody>
+							<tr>
+								<th scope='col'>Produto</th>	
+								<th scope='col'>Preço</th>	
+								<th scope='col'>Quantidade Vendida</th>	
+								</th>
+							</tr>
+						</thead>
+						<tbody>
 					";
 					echo "<tr>";
-					echo"<td>".($pedido['IDPedido'])."</td>";
-					echo"<td>".($pedido['DataPedido'])."</td>";
-					echo"<td>".($pedido['ValorPedido'])."</td>";
-					echo"<td>".($pedido['Nome'])."</td>";
 					echo"<td>".($pedido['NomeProduto'])."</td>";
 					echo"<td>".($pedido['PrecoProduto'])."</td>";
 					echo"<td>".($pedido['QuantidadeVendida'])."</td>";
