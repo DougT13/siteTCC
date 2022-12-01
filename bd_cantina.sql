@@ -115,6 +115,7 @@ DROP DATABASE IF EXISTS Cantina;
 	SELECT Pedidos.IDPedido,
 	Pedidos.DataPedido,
 	Pedidos.ValorPedido,
+	Pedidos.Confirmado,
 	Clientes.Nome,
 	Produtos.NomeProduto,
 	Produtos.PrecoProduto,

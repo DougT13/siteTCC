@@ -11,7 +11,7 @@
 
     //echo $response;
     //transformando o json em um array
-    $response = json_decode($response, 1);
+    $response = json_decode($response, 1, JSON_UNESCAPED_UNICODE);
     $QuantidadePedidos = json_decode($QuantidadePedidos, 1);
     //$QuantidadePedidos = $QuantidadePedidos['pedidos']['IDPedido'];
     //$ola = $response['pedidos']['0']['IDPedido'];
@@ -24,7 +24,28 @@
 		$precoProduto =  intval($preco['PrecoProduto']);
 		$precoTotal = $precoTotal + $precoProduto;
 	}
-	$id = 1;
+	$id = 0;
+	$confirmado = 0;
+	
+
+	function id0(){
+		$aceitar = 1;
+		$negar = 2;
+		echo "
+			<form method='POST' action='editar.php'>
+				<h5>Deseja aceitar o pedido?</h3>
+				<input type='hidden' name='confirmado' value='$aceitar'>
+				<input type='hidden' name='confirmado' value='1'>
+				<button type='submit'>Aceitar</button>
+
+				<form method='POST' action='editar.php' >
+					<input type='hidden' name='confirmado' value='$negar'>
+				<input type='hidden' name='confirmado' value='1'>
+						<button type='submit'>Negar</button>
+				</form>
+			</form>
+								";
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -87,34 +108,7 @@
 	
 		<?php
 			$IDPedido = "";
-
 			foreach($response['pedidos'] as $pedido){
-			echo "
-				<table style='border-top: 3px solid black;
-				width: 100%;
-				text-align: center;
-				border-right: 3px solid black;
-				border-left: 3px solid black;
-				background-color: rgba(255, 255, 255, 0.8);'>
-				<thead >";
-				echo "<th>IDPedido: ".($pedido['IDPedido'])." // Cliente: ".($pedido['Nome'])."// Data Pedido: ".($pedido['DataPedido'])." // Valor Pedido: ".($pedido['ValorPedido'])."</th>
-				</thead>
-				</table>
-				<table class='table text-black table-bg'>
-				<thead>
-					<tr>
-						<th scope='col'>Produto</th>	
-						<th scope='col'>Preço</th>	
-						<th scope='col'>Quantidade Vendida</th>	
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-			";
-			break;
-			}
-			foreach($response['pedidos'] as $pedido){
-				
 				if($pedido['IDPedido'] == $id)
 				{	
 					if($pedido['IDPedido'] != $IDPedido){
@@ -141,7 +135,11 @@
 						border-left: 3px solid black;
 						background-color: rgba(255, 255, 255, 0.8);'>
 						<thead >";
-							echo "<th>IDPedido: ".($pedido['IDPedido'])." // Cliente: ".($pedido['Nome'])."// Data Pedido: ".($pedido['DataPedido'])." // Valor Pedido: ".($pedido['ValorPedido'])."</th>
+							if($pedido['Confirmado'] == 0){
+								$confirmado = "Em espera";
+								id0();
+							}else $confirmado = "cornokkkkkkkkkk";
+							echo "<th>IDPedido: ".($pedido['IDPedido'])." // Cliente: ".($pedido['Nome'])."// Data Pedido: ".($pedido['DataPedido'])." // Valor Pedido: ". ($pedido['ValorPedido'])." // Status do Pedido: ". $confirmado."</th>
 						</thead>
 						</table>
 						<table class='table text-black table-bg'>
@@ -183,13 +181,19 @@
 	function searchData(){
 		window.location = 'Gerenciamento.php?search='+search.value;
 	}
-
+	
 
 </script>
 </div>
+	
+
 </html>
 
 <?php
+
+	echo ""
+
+
 
 /*
 	echo"<td>".($pedido['IDPedido'])."</td>";
