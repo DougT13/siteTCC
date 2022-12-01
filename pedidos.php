@@ -28,19 +28,20 @@
 	$confirmado = 0;
 	
 
-	function id0(){
+	function id0($IDPedido){
 		$aceitar = 1;
 		$negar = 2;
+		$id = $IDPedido;
 		echo "
-			<form method='POST' action='editar.php'>
+			<form method='POST' action='http://localhost/cantinaapi/CantinaAPI/v1/Api.php?apicall=confirmarPedido'>
 				<h5>Deseja aceitar o pedido?</h3>
-				<input type='hidden' name='confirmado' value='$aceitar'>
-				<input type='hidden' name='confirmado' value='1'>
+				<input type='hidden' name='Confirmado' value='$aceitar'>
+				<input type='hidden' name='IDPedido' value='$id'>
 				<button type='submit'>Aceitar</button>
 
-				<form method='POST' action='editar.php' >
-					<input type='hidden' name='confirmado' value='$negar'>
-				<input type='hidden' name='confirmado' value='1'>
+				<form method='POST' action='http://localhost/cantinaapi/CantinaAPI/v1/Api.php?apicall=confirmarPedido' >
+					<input type='hidden' name='Confirmado' value='$negar'>
+					<input type='hidden' name='IDPedido' value='$id'>
 						<button type='submit'>Negar</button>
 				</form>
 			</form>
@@ -135,10 +136,24 @@
 						border-left: 3px solid black;
 						background-color: rgba(255, 255, 255, 0.8);'>
 						<thead >";
-							if($pedido['Confirmado'] == 0){
+							/*if($pedido['Confirmado'] == 0){
 								$confirmado = "Em espera";
-								id0();
-							}else $confirmado = "cornokkkkkkkkkk";
+								id0($id);
+							}else  $confirmado = "cornokkkkkkkkkk"; */
+
+							switch ($pedido['Confirmado']){
+								case '0':
+									$confirmado = "EM ESPERA";
+									id0($id);
+								break;
+								case '1':
+									$confirmado = "CONFIRMADO";
+								break;
+								case '2':
+									$confirmado = "Excluído";
+								break;	
+							}
+
 							echo "<th>IDPedido: ".($pedido['IDPedido'])." // Cliente: ".($pedido['Nome'])."// Data Pedido: ".($pedido['DataPedido'])." // Valor Pedido: ". ($pedido['ValorPedido'])." // Status do Pedido: ". $confirmado."</th>
 						</thead>
 						</table>
