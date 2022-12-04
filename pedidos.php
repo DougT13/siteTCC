@@ -38,12 +38,11 @@
 				<input type='hidden' name='Confirmado' value='$aceitar'>
 				<input type='hidden' name='IDPedido' value='$id'>
 				<button type='submit'>Aceitar</button>
-
-				<form method='POST' action='http://localhost/cantinaapi/CantinaAPI/v1/Api.php?apicall=confirmarPedido' >
-					<input type='hidden' name='Confirmado' value='$negar'>
-					<input type='hidden' name='IDPedido' value='$id'>
-						<button type='submit'>Negar</button>
-				</form>
+			</form>
+			<form method='POST' action='http://localhost/cantinaapi/CantinaAPI/v1/Api.php?apicall=confirmarPedido' >
+				<input type='hidden' name='Confirmado' value='$negar'>
+				<input type='hidden' name='IDPedido' value='$id'>
+				<button type='submit'>Negar</button>
 			</form>
 								";
 	}
