@@ -91,7 +91,7 @@ DROP DATABASE IF EXISTS Cantina;
 
 	(null, '2', '2022-10-11', '50', '0'),
 
-	(null, '3', '2022-10-15', '40', '0');
+	(null, '3', '2022-10-15', '40', '3');
 
 
 	INSERT INTO ItensPedidos
@@ -111,6 +111,11 @@ DROP DATABASE IF EXISTS Cantina;
 	('4', '2', '7'),
 	('4', '3', '8'),
 	('4', '4', '9');
+
+	INSERT INTO ItensPedidos
+	VALUES('3', '2', '2'),
+	('3', '4', '7'),
+	('3', '2', '8');
 
 	SELECT Pedidos.IDPedido,
 	Pedidos.DataPedido,

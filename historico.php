@@ -54,7 +54,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<title>Pedidos</title>
+	<title>Histórico</title>
 
 	<style>
 	body{
@@ -91,7 +91,7 @@
 
 	<nav class="navbar navbar-dark" style="background: rgb(40,40,40); display: wrap; justify-content:center;  ">
 
-            <a class="navbar-brand" href="#" style="color:white;"><b>Tabela de Pedidos</b></a>
+            <a class="navbar-brand" href="#" style="color:white;"><b>Histórico</b></a>
             
         </div>
     </nav>  
@@ -109,7 +109,7 @@
 		<?php
 			$IDPedido = "";
 			foreach($response['pedidos'] as $pedido){
-				if($pedido['Confirmado'] != 2 && $pedido['Confirmado'] != 3){
+				if($pedido['Confirmado'] != 0 && $pedido['Confirmado'] != 1){
 					if($pedido['IDPedido'] == $id)
 					{	
 						if($pedido['IDPedido'] != $IDPedido){
@@ -141,13 +141,12 @@
 								}else  $confirmado = "cornokkkkkkkkkk"; */
 
 								switch ($pedido['Confirmado']){
-									case '0':
-										$confirmado = "EM ESPERA";
-										id0($id);
+									case '3':
+										$confirmado = "Concluído";
 									break;
-									case '1':
-										$confirmado = "CONFIRMADO";
-									break;
+									case '2':
+										$confirmado = "Excluído";
+									break;	
 								}
 
 								echo "<th>IDPedido: ".($pedido['IDPedido'])." // Cliente: ".($pedido['Nome'])."// Data Pedido: ".($pedido['DataPedido'])." // Valor Pedido: ". ($pedido['ValorPedido'])." // Status do Pedido: ". $confirmado."</th>
