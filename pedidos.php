@@ -28,7 +28,7 @@
 	$confirmado = 0;
 	
 
-	function id0($IDPedido){
+	function confirmadoZero($IDPedido){
 		$aceitar = 1;
 		$negar = 2;
 		$id = $IDPedido;
@@ -43,6 +43,18 @@
 				<input type='hidden' name='Confirmado' value='$negar'>
 				<input type='hidden' name='IDPedido' value='$id'>
 				<button type='submit'>Negar</button>
+			</form>
+								";
+	}
+	function concluirPedido($IDPedido){
+		$aceitar = 3;
+		$negar = 2;
+		$id = $IDPedido;
+		echo "
+			<form method='POST' action='http://localhost/cantinaapi/CantinaAPI/v1/Api.php?apicall=confirmarPedido'>
+				<input type='hidden' name='Confirmado' value='$aceitar'>
+				<input type='hidden' name='IDPedido' value='$id'>
+				<button type='submit'>Concluir Pedido</button>
 			</form>
 								";
 	}
@@ -135,18 +147,15 @@
 							border-left: 3px solid black;
 							background-color: rgba(255, 255, 255, 0.8);'>
 							<thead >";
-								/*if($pedido['Confirmado'] == 0){
-									$confirmado = "Em espera";
-									id0($id);
-								}else  $confirmado = "cornokkkkkkkkkk"; */
-
+				
 								switch ($pedido['Confirmado']){
 									case '0':
 										$confirmado = "EM ESPERA";
-										id0($id);
+										confirmadoZero($id);
 									break;
 									case '1':
 										$confirmado = "CONFIRMADO";
+										concluirPedido($id);
 									break;
 								}
 
