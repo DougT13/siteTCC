@@ -98,9 +98,8 @@
     <br>
     <div class="container">
 	<div class="box-search">
-		
 		<a class="btn btn-sm btn-primary" href="Gerenciamento.php" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px;" ><b>Ir para o gerenciamento</b></a>
-
+		<a class="btn btn-sm btn-primary" href="pedidos.php" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px; margin-left: 10px;" ><b>Ir para os pedidos</b></a>
 		<a class="btn btn-sm btn-primary" href="login.php" style="background: #fe7009; border: 1px solid black; color: black; margin-left: auto; margin-bottom:20px; padding:10px 10px 10px 10px;" ><b>Sair</b></a>
 	</div>
 	<div>
@@ -108,8 +107,10 @@
 	
 		<?php
 			$IDPedido = "";
+			//exibindo os pedidos concluídos
 			foreach($response['pedidos'] as $pedido){
-				if($pedido['Confirmado'] != 0 && $pedido['Confirmado'] != 1){
+				if($pedido['Confirmado']== 3){
+					$confirmado = "Concluído";
 					if($pedido['IDPedido'] == $id)
 					{	
 						if($pedido['IDPedido'] != $IDPedido){
@@ -135,20 +136,57 @@
 							border-left: 3px solid black;
 							background-color: rgba(255, 255, 255, 0.8);'>
 							<thead >";
-								/*if($pedido['Confirmado'] == 0){
-									$confirmado = "Em espera";
-									id0($id);
-								}else  $confirmado = "cornokkkkkkkkkk"; */
-
-								switch ($pedido['Confirmado']){
-									case '3':
-										$confirmado = "Concluído";
-									break;
-									case '2':
-										$confirmado = "Excluído";
-									break;	
-								}
-
+								echo "<th>IDPedido: ".($pedido['IDPedido'])." // Cliente: ".($pedido['Nome'])."// Data Pedido: ".($pedido['DataPedido'])." // Valor Pedido: ". ($pedido['ValorPedido'])." // Status do Pedido: ". $confirmado."</th>
+							</thead>
+							</table>
+							<table class='table text-black table-bg'>
+							<thead>
+								<tr>
+									<th scope='col'>Produto</th>	
+									<th scope='col'>Preço</th>	
+									<th scope='col'>Quantidade Vendida</th>	
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+						";
+						echo "<tr>";
+						echo"<td>".($pedido['NomeProduto'])."</td>";
+						echo"<td>".($pedido['PrecoProduto'])."</td>";
+						echo"<td>".($pedido['QuantidadeVendida'])."</td>";
+						$IDPedido = $pedido['IDPedido'];
+					}
+				}
+			}
+			//exibindo os pedidos excluídos
+			foreach($response['pedidos'] as $pedido){
+				if($pedido['Confirmado']== 2){
+					$confirmado = "Excluído";
+					if($pedido['IDPedido'] == $id)
+					{	
+						if($pedido['IDPedido'] != $IDPedido){
+							echo "<tr>";
+							echo"<td>".($pedido['NomeProduto'])."</td>";
+							echo"<td>".($pedido['PrecoProduto'])."</td>";
+							echo"<td>".($pedido['QuantidadeVendida'])."</td>";
+							$IDPedido = $pedido['IDPedido'];
+						}else {
+							echo "<tr>";
+							echo"<td>".($pedido['NomeProduto'])."</td>";
+							echo"<td>".($pedido['PrecoProduto'])."</td>";
+							echo"<td>".($pedido['QuantidadeVendida'])."</td>";
+						}
+						
+					}else{
+						$id = $pedido['IDPedido'];
+						echo "
+							<table style='border-top: 3px solid black;
+							width: 100%;
+							text-align: center;
+							border-right: 3px solid black;
+							border-left: 3px solid black;
+							background-color: rgba(255, 255, 255, 0.8);'>
+							<thead >";
 								echo "<th>IDPedido: ".($pedido['IDPedido'])." // Cliente: ".($pedido['Nome'])."// Data Pedido: ".($pedido['DataPedido'])." // Valor Pedido: ". ($pedido['ValorPedido'])." // Status do Pedido: ". $confirmado."</th>
 							</thead>
 							</table>

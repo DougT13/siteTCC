@@ -108,7 +108,7 @@ if (!empty($_GET['IDProduto']))
 		 left: 0;
 		 bottom: 0;
 		 width: 100%;
-		 background-color: black;
+		 background-color: rgb(40,40,40);
 		 color: white;
 		 text-align: center;
 		}
@@ -118,7 +118,7 @@ if (!empty($_GET['IDProduto']))
     <div class="box">
         <form action="http://localhost/cantinaapi/CantinaAPI/v1/Api.php?apicall=updateProdutos" method="POST">
             <fieldset>
-                <legend><b>Fórmulário de Clientes</b></legend>
+                <legend><b>Alterar Produto</b></legend>
                 <br>
                 <div class="inputBox">
                     <input type="text" name="NomeProduto" id="NomeProduto" class="inputUser" value="<?php echo $nome_produto ?>" required>
@@ -150,5 +150,8 @@ if (!empty($_GET['IDProduto']))
             </fieldset>
         </form>
     </div>
+    <footer>
+		Projeto Open Source.	&trade; - Copyright&copy; - : Agradecimentos especiais ETEC IRMÃ AGOSTINA
+    </footer>
 </body>
 </html>

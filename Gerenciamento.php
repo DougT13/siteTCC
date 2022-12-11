@@ -62,15 +62,10 @@
     <br>
     <div class="container-md">
 	<div class="box-search">
-		<input type="search" form="form-control w-25" placeholder="Pesquisar" id="pesquisar" style="margin-bottom:20px; padding:10px 10px 10px 10px;">
-		<button onclick="searchData()" class="btn" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px;">
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-			  	<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-			</svg>
-		</button>
 
-		<a class="btn btn-sm btn-primary" href="formulario.php" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px;"><b>Adicionar Item</b></a>
-		<a class="btn btn-sm btn-primary" href="pedidos.php" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px;" ><b>Ir para os pedidos</b></a>
+		<a class="btn btn-sm btn-primary" href="formulario.php" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px; margin-left: 10px;"><b>Adicionar Item</b></a>
+		<a class="btn btn-sm btn-primary" href="pedidos.php" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px; margin-left: 10px;" ><b>Ir para os pedidos</b></a>
+		<a class="btn btn-sm btn-primary" href="historico.php" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px; margin-left: 10px;" ><b>Ir para o Histórico</b></a>
 		<a class="btn btn-sm btn-primary" href="login.php" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px; margin-left:auto;" ><b>Sair</b></a>
 	</div>
 	<div>
@@ -115,21 +110,7 @@
 		</table>
 	</div>
 </body>
-<script>
-	var search = document.getElementById('pesquisar');
 
-	search.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") 
-        {
-            searchData();
-        }
-    });
-
-	function searchData(){
-		window.location = 'Gerenciamento.php?search='+search.value;
-	}
-
-</script>
 </div>
 <footer>
 		Projeto Open Source.	&trade; - Copyright&copy; - : Agradecimentos especiais ETEC IRMÃ AGOSTINA

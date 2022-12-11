@@ -20,15 +20,11 @@
     //echo $response['pedidos']['0']['PrecoProduto'];
 	$precoTotal = 0;
 
-	foreach($response['pedidos'] as $preco){
-		$precoProduto =  intval($preco['PrecoProduto']);
-		$precoTotal = $precoTotal + $precoProduto;
-	}
 	$id = 0;
 	$confirmado = 0;
 	
 
-	function id0($IDPedido){
+	function confirmadoZero($IDPedido){
 		$aceitar = 1;
 		$negar = 2;
 		$id = $IDPedido;
@@ -43,6 +39,18 @@
 				<input type='hidden' name='Confirmado' value='$negar'>
 				<input type='hidden' name='IDPedido' value='$id'>
 				<button type='submit'>Negar</button>
+			</form>
+								";
+	}
+	function concluirPedido($IDPedido){
+		$aceitar = 3;
+		$negar = 2;
+		$id = $IDPedido;
+		echo "
+			<form method='POST' action='http://localhost/cantinaapi/CantinaAPI/v1/Api.php?apicall=confirmarPedido'>
+				<input type='hidden' name='Confirmado' value='$aceitar'>
+				<input type='hidden' name='IDPedido' value='$id'>
+				<button type='submit'>Concluir Pedido</button>
 			</form>
 								";
 	}
@@ -100,12 +108,14 @@
 	<div class="box-search">
 		
 		<a class="btn btn-sm btn-primary" href="Gerenciamento.php" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px;" ><b>Ir para o gerenciamento</b></a>
-
+		<a class="btn btn-sm btn-primary" href="Historico.php" style="background: #fe7009; border: 1px solid black; color: black; margin-bottom:20px; padding:10px 10px 10px 10px; margin-left: 10px;" ><b>Ir para o Histórico</b></a>
 		<a class="btn btn-sm btn-primary" href="login.php" style="background: #fe7009; border: 1px solid black; color: black; margin-left: auto; margin-bottom:20px; padding:10px 10px 10px 10px;" ><b>Sair</b></a>
 	</div>
 	<div>
 
-	
+		<div class="alert alert-warning" role="alert">
+			Pedidos negados e concluídos irão para a página de histórico!!!
+		</div>
 		<?php
 			$IDPedido = "";
 			foreach($response['pedidos'] as $pedido){
@@ -135,18 +145,15 @@
 							border-left: 3px solid black;
 							background-color: rgba(255, 255, 255, 0.8);'>
 							<thead >";
-								/*if($pedido['Confirmado'] == 0){
-									$confirmado = "Em espera";
-									id0($id);
-								}else  $confirmado = "cornokkkkkkkkkk"; */
-
+				
 								switch ($pedido['Confirmado']){
 									case '0':
 										$confirmado = "EM ESPERA";
-										id0($id);
+										confirmadoZero($id);
 									break;
 									case '1':
 										$confirmado = "CONFIRMADO";
+										concluirPedido($id);
 									break;
 								}
 
