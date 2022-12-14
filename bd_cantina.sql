@@ -16,7 +16,7 @@ DROP DATABASE IF EXISTS Cantina;
 	);
 
 	INSERT INTO Estabelecimento
-	VALUES(null, '98563256987456', 'Cantina do Tonhao', 'Rua do Tonhao', '9911547896325', 'tonhao@tonhao.com', 'tonho');
+	VALUES(null, '98563256987456', 'Cantina do Tonhao', 'Rua do Tonhao', '9911547896325', 'cantina.etec@gmail.com', 'cantina123');
 
 	CREATE TABLE Clientes(
 		IDCliente INT auto_increment NOT NULL PRIMARY KEY,
